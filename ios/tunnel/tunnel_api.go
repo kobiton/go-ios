@@ -20,9 +20,9 @@ const DefaultHttpApiPort = 28100
 
 // ServeTunnelInfo starts a simple http serve that exposes the tunnel information about the running tunnel.
 // The API has two endpoints:
-// 1. GET		localhost:{PORT}/tunnel/{UDID}	to get the tunnel info for a specific device
-// 2. DELETE	localhost:{PORT}/tunnel/{UDID}	to stop a device tunnel
-// 3. GET		localhost:{PORT}/tunnels		to get a list of all tunnels
+// 1. GET    localhost:{PORT}/tunnel/{UDID} to get the tunnel info for a specific device
+// 2. DELETE localhost:{PORT}/tunnel/{UDID} to stop a device tunnel
+// 3. GET    localhost:{PORT}/tunnels       to get a list of all tunnels
 func ServeTunnelInfo(tm *TunnelManager, port int) error {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/tunnel/", func(writer http.ResponseWriter, request *http.Request) {
