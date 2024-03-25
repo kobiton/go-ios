@@ -152,6 +152,20 @@ func (m *TunnelManager) UpdateTunnels(ctx context.Context) error {
 		if _, exists := m.tunnels[udid]; exists {
 			continue
 		}
+
+		// Do not start tunnels for iOS versions less than 17.
+		version, err := ios.GetProductVersion(d)
+		if err != nil {
+			log.WithField("udid", udid).
+				WithError(err).
+				Warn("failed to retrieve iOS version")
+			continue
+		}
+
+		if version.LessThan(ios.IOS17()) {
+			continue
+		}
+
 		t, err := m.startTunnel(ctx, d)
 		if err != nil {
 			log.WithField("udid", udid).
