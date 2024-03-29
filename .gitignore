@@ -7,6 +7,7 @@ node_modules
 *.csr
 testdata/wda-signed.ipa
 devimages
+go.work.sum
 # Binaries for programs and plugins
 *.log
 *.exe
