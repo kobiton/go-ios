@@ -9,6 +9,7 @@ import (
 	"io"
 	"io/ioutil"
 	"os"
+	"os/exec"
 	"os/signal"
 	"path"
 	"path/filepath"
@@ -1957,6 +1958,10 @@ func pairDevice(device ios.DeviceEntry, orgIdentityP12File string, p12Password s
 func startTunnel(ctx context.Context, recordsPath string, tunnelInfoPort int) {
 	pm, err := tunnel.NewPairRecordManager(recordsPath)
 	exitIfError("could not creat pair record manager", err)
+
+	err = exec.Command("killall", "-SIGSTOP", "remoted").Run()
+	exitIfError("could not stop remoted", err)
+
 	tm := tunnel.NewTunnelManager(pm)
 
 	go func() {
