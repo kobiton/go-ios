@@ -1959,8 +1959,8 @@ func startTunnel(ctx context.Context, recordsPath string, tunnelInfoPort int) {
 	pm, err := tunnel.NewPairRecordManager(recordsPath)
 	exitIfError("could not creat pair record manager", err)
 
-	err = exec.Command("killall", "-SIGSTOP", "remoted").Run()
-	exitIfError("could not stop remoted", err)
+	exec.Command("killall", "-SIGSTOP", "remoted").Run()
+	// Ignore errors.
 
 	tm := tunnel.NewTunnelManager(pm)
 
