@@ -29,7 +29,7 @@ func checkLinux() {
 // if not specified, the prometheus endpoint will not be started and not be available.
 func main() {
 	checkLinux()
-	checkUsbMux()
+	//checkUsbMux()
 	checkRoot()
 	// Define a string flag with a default value and a short description.
 	// This will read the command-line argument for --prometheusport.
